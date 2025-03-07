@@ -508,6 +508,9 @@ footer .text span a:hover {
 }
 
 @media (max-width: 750px) {
+  .home{
+    background: #cee7f9;
+  }
   nav .navbar {
     width: 90%;
   }
@@ -586,6 +589,9 @@ footer .text span a:hover {
 }
 
 @media (max-width: 500px) {
+  .home{
+    background: #cee7f9;
+  }
   .home .text-two {
     font-size: 55px;
   }
