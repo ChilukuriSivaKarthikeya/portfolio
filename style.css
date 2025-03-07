@@ -325,7 +325,6 @@ section .button button:hover {
     align-items: center; /* Center content */
     justify-content: center;
     width: calc(100% /5 - 20px); /* 5 columns */
-    
     margin: 20px;
     text-align: center; 
 }
@@ -594,9 +593,13 @@ footer .text span a:hover {
   .home .text-three {
     font-size: 33px;
   }
-
-  .skills-details .boxes .per {
-    font-size: 50px;
-    color: #4070f4;
+  .skills-details .box {
+    flex: 2 1 100%; /* 1 column */
+    max-width: 100%;
   }
+
+  .skills-details .topic {
+    font-size: 15px;
+  }
+  
 }
