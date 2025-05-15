@@ -431,6 +431,16 @@ section .button button:hover {
   font-size: 18px;
   color: #666;
 }
+.contact p a {
+  font-size: 18px;
+  color: #666;
+  text-decoration: none;
+}
+
+.contact p a:hover {
+  color: #000; 
+}
+
 
 /* Footer CSS */
 footer {
