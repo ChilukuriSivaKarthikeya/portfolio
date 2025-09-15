@@ -9,6 +9,15 @@
   scroll-behavior: smooth;
 }
 
+/* Design tokens */
+:root {
+  --card-radius: 12px;
+  --card-padding: 20px 16px;
+  --card-bg: #ffffff;
+  --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
 /* Custom Scroll Bar CSS */
 ::-webkit-scrollbar {
   width: 10px;
@@ -130,7 +139,7 @@ nav.sticky .menu-btn {
 .home {
   height: 100vh;
   width: 100%;
-  background: url("Images/background.jpg") no-repeat;
+  background: #F0F8FF;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -140,10 +149,15 @@ nav.sticky .menu-btn {
 .home .home-content {
   width: 90%;
   height: 100%;
-  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.home .text {
+  text-align: center;
+  
 }
 
 .home .text-one {
@@ -160,13 +174,13 @@ nav.sticky .menu-btn {
 
 .home .text-three {
   font-size: 40px;
-  margin: 5px 0;
+  margin: 10px 0;
   color: #4070f4;
 }
 
 .home .text-four {
   font-size: 23px;
-  margin: 5px 0;
+  margin: 10px 0;
   color: #0E2431;
 }
 
@@ -197,25 +211,33 @@ nav.sticky .menu-btn {
 /* Those Elements Where We Have Apply Same CSS,
  I'm Selecting Directly 'Section Tag' and 'Class'  */
 section {
-  padding-top: 40px;
+  padding: 56px 0;
 }
 
 section .content {
   width: 80%;
-  margin: 40px auto;
+  margin: 0 auto;
   font-family: 'Poppins', sans-serif;
 }
+
+/* Alternating section backgrounds using existing palette (#fff and #F0F8FF) */
+section.about { background: #fff; }
+section.education { background: #F0F8FF; }
+section.skills { background: #fff; }
+section.projects { background: #F0F8FF; }
+section.contact { background: #fff; }
 
 .about .about-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
 }
 
 section .title {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 section .title span {
@@ -244,20 +266,38 @@ section .title span::after {
   transform: translateX(-50%);
 }
 
-.about .about-details .left {
-  width: 45%;
+/* Unified card styling across sections */
+.skills-details .box,
+.projects .boxes .box,
+.edu-card,
+.contact-item {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+.skills-details .box:hover,
+.projects .boxes .box:hover,
+.edu-card:hover,
+.contact-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+
 
 .about .left img {
-  height: 400px;
-  width: 400px;
+  height: 220px;
+  width: 220px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 10%;
+  border: 4px solid #fff;
+  box-shadow: var(--card-shadow);
 }
 
-.about-details .right {
-  width: 55%;
-}
+
 
 section .topic {
   color: #0E2431;
@@ -269,6 +309,7 @@ section .topic {
 .about-details .right p {
   text-align: justify;
   color: #0E2431;
+  line-height: 1.8;
 }
 
 section .button {
@@ -300,7 +341,7 @@ section .button button:hover {
 }
 
 .skills .content {
-  padding: 40px 0;
+  padding: 0;
 }
 
 
@@ -311,22 +352,19 @@ section .button button:hover {
 }
 
 .skills-details .boxes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the boxes */
-    gap: 20px; /* Adds spacing between items */
-    max-width: 1200px; /* Prevents boxes from stretching too wide */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
     width: 100%;
 }
 
 .skills-details .box {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content */
+    align-items: center;
     justify-content: center;
-    width: calc(100% /5 - 20px); /* 5 columns */
-    margin: 20px;
-    text-align: center; 
+    text-align: center;
 }
 
 .skills-details .boxes .topic {
@@ -345,8 +383,8 @@ section .button button:hover {
 }
 
 .skills-details .box .per img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     object-fit: cover;
     border-radius: 12px;
     display: block;
@@ -363,11 +401,14 @@ section .button button:hover {
   margin: 20px 0;
   width: calc(100% / 3 - 20px);
   text-align: center;
-  border-radius: 12px;
-  padding: 30px 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   cursor: default;
-  transition: all 0.4s ease;
+}
+
+.projects .boxes .project-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .projects .boxes .box:hover {
@@ -404,41 +445,124 @@ section .button button:hover {
   color: #fff;
 }
 
+/* Project links inside titles */
+.project-link {
+  color: inherit;
+  text-decoration: none;
+}
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* Education Section */
+.education { background: #fff; }
+
+.education .content {
+  padding: 0;
+}
+
+.edu-timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.edu-card { padding: 24px; }
+
+.edu-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.edu-header h3 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #0E2431;
+}
+
+.edu-year {
+  display: inline-block;
+  background: #eef3ff;
+  color: #4070f4;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.edu-meta {
+  color: #47627a;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.edu-grade {
+  color: #0E2431;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.edu-card p {
+  color: #0E2431;
+  line-height: 1.7;
+}
+
 /* Contact Me CSS */
 .contact {
   background: #F0F8FF;
-  text-align: center;
 }
 
 .contact .content {
   margin: auto;
-  padding: 30px;
+  padding: 0;
 }
 
-.contact .text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap:15px;
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
-.contact .topic{
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-icon {
+  height: 48px;
+  width: 48px;
+  display: grid;
+  place-items: center;
+  background: #4070f4;
+  color: #fff;
+  border-radius: 10px;
   font-size: 20px;
-  font-weight: bold;
-  color: #333;
+}
+
+.contact .topic{
+  font-size: 18px;
+  font-weight: 600;
+  color: #0E2431;
+  margin: 0 0 4px 0;
+}
+
+.contact p{
+  font-size: 16px;
+  color: #47627a;
   margin: 0;
 }
-.contact p{
-  font-size: 18px;
-  color: #666;
-}
+
 .contact p a {
-  font-size: 18px;
-  color: #666;
+  color: #47627a;
   text-decoration: none;
 }
 
 .contact p a:hover {
-  color: #000; 
+  color: #0E2431; 
 }
 
 
@@ -507,6 +631,9 @@ footer .text span a:hover {
   .projects .boxes .box {
     margin: 20px 0;
     width: calc(100% / 2 - 20px);
+  }
+  .edu-timeline {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -582,19 +709,15 @@ footer .text span a:hover {
     margin-bottom: 50px;
   }
 
-  .skills-details .boxes {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+  .skills-details .boxes { width: 100%; }
 
   .projects .boxes .box {
     margin: 20px 0;
     width: 100%;
   }
 
-  .contact .text {
-    width: 100%;
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 
